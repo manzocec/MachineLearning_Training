@@ -10,10 +10,16 @@ import numpy as np
 
 def split_data(x, y, ratio, seed=1):
     """split the dataset based on the split ratio."""
-    # set seed
     np.random.seed(seed)
-    # ***************************************************
-    # INSERT YOUR CODE HERE
-    # split the data based on the given ratio: TODO
-    # ***************************************************
-    raise NotImplementedError
+    N = np.shape(x)[0]
+    idx = np.random.permutation(N)
+    tr_size = int(np.floor(N*ratio))
+    idx_tr = idx[:tr_size]
+    idx_te = idx[tr_size:]
+    
+    x_tr = x[idx_tr]
+    x_te = x[idx_te]
+    y_tr = y[idx_tr]
+    y_te = y[idx_te]
+    
+    return x_tr, x_te, y_tr, y_te
